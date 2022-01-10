@@ -15,7 +15,7 @@ mvnw clean install
 mvnw spring-boot:run 
 ```
 
-## For Setting local firebase environment 
+## For setting local firebase environment 
 https://firebase.google.com/codelabs/firebase-emulator#1
 
 
