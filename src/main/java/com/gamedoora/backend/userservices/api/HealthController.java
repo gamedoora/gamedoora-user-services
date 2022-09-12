@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HealthController implements BaseController {
+
+public class HealthController extends BaseController {
 
 	@GetMapping(value = "health")
 	public ResponseEntity<String> provideHealthStatus() {

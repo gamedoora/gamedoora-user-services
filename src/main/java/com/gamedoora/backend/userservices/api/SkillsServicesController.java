@@ -20,7 +20,8 @@ import com.gamedoora.backend.userservices.dto.SkillsDTO;
 import com.gamedoora.model.dao.Skills;
 
 @RestController
-public class SkillsServicesController implements BaseController {
+
+public class SkillsServicesController extends BaseController {
 
 	@Autowired
 	SkillsServicesAssembler skillsServicesAssembler;
