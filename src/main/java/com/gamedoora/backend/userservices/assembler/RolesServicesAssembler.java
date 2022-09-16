@@ -61,12 +61,14 @@ public class RolesServicesAssembler {
 	}
 
 	public List<Roles> getAllRoles(String name) {
-         List<Roles> roles = new ArrayList<>();
-      if (name == null) rolesRepository.findAll().forEach(roles::add);
-      else rolesRepository.findByNameContaining(name).forEach(roles::add);
-      if (roles.isEmpty()) {
-        return null;
-      }
-      return roles;
-  }
+		List<Roles> roles = new ArrayList<>();
+		if (name == null)
+			rolesRepository.findAll().forEach(roles::add);
+		else
+			rolesRepository.findByNameContaining(name).forEach(roles::add);
+		if (roles.isEmpty()) {
+			return null;
+		}
+		return roles;
+	}
 }

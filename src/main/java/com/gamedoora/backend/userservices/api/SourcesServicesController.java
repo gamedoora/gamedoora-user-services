@@ -1,5 +1,6 @@
 package com.gamedoora.backend.userservices.api;
 
+import java.text.MessageFormat;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gamedoora.backend.userservices.assembler.SourcesServicesAssembler;
-import com.gamedoora.backend.userservices.dto.RoleDTO;
 import com.gamedoora.backend.userservices.dto.SourceDTO;
+import com.gamedoora.backend.userservices.exceptions.NotFoundException;
 import com.gamedoora.model.dao.Sources;
 
 @RestController
@@ -26,30 +27,35 @@ public class SourcesServicesController extends BaseController {
 	@Autowired
 	SourcesServicesAssembler sourcesServicesAssembler;
 
-	@PostMapping(value = "/createSources")
-	public ResponseEntity<SourceDTO> createSources(@RequestBody SourceDTO sourcesDto) {
-		return sourcesServicesAssembler.createSources(sourcesDto);
+	@PostMapping(value = "/")
+	public ResponseEntity<SourceDTO> createSources(@RequestBody SourceDTO sourceDto) {
+		return createResponse(sourcesServicesAssembler.createSources(sourceDto), HttpStatus.CREATED);
 
 	}
 
 	@PutMapping("/Sources/{id}")
-	public ResponseEntity<RoleDTO> updateSources(@PathVariable("id") long id, @RequestBody RoleDTO SourcesDto) {
-		return sourcesServicesAssembler.updateSources(id, SourcesDto);
-
+	public ResponseEntity<SourceDTO> updateSources(@PathVariable("id") long id, @RequestBody SourceDTO sourceDto) {
+		SourceDTO sourceDTO = sourcesServicesAssembler.updateSources(id, sourceDto);
+		if (null == sourceDTO) {
+			throw new NotFoundException(MessageFormat.format("Source by id {0} not found", id));
+		}
+		return createResponse(sourceDTO, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/Sources/{id}")
 	public ResponseEntity<HttpStatus> deleteSources(@PathVariable("id") long id) {
-		return sourcesServicesAssembler.deleteSources(id);
+		sourcesServicesAssembler.deleteSources(id);
+		return createResponse(null, HttpStatus.NO_CONTENT);
 	}
 
-	@DeleteMapping("/deleteAllSources")
+	@DeleteMapping("/")
 	public ResponseEntity<HttpStatus> deleteAllSources() {
-		return sourcesServicesAssembler.deleteAllSources();
+		sourcesServicesAssembler.deleteAllSources();
+		return createResponse(null, HttpStatus.NO_CONTENT);
 	}
 
-	@GetMapping("/getSources")
+	@GetMapping("/")
 	public ResponseEntity<List<Sources>> getAllSources(@RequestParam(required = false) String name) {
-		return sourcesServicesAssembler.getAllSources(name);
+		return createResponse(sourcesServicesAssembler.getAllSources(name), HttpStatus.OK);
 	}
 }
