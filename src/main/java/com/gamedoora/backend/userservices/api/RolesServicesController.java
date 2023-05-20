@@ -57,7 +57,7 @@ public class RolesServicesController extends BaseController {
 	}
 
 	@GetMapping(value = "/", produces =  {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<Roles>> getAllRoles(@RequestParam(required = false) String name) {
+	public ResponseEntity<List<RoleDTO>> getAllRoles(@RequestParam(required = false) String name) {
 		return createResponse(rolesServicesAssembler.getAllRoles(name), HttpStatus.OK);
 	}
 }

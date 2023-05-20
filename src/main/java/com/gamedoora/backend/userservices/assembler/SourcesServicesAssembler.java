@@ -1,6 +1,7 @@
 package com.gamedoora.backend.userservices.assembler;
 
 import com.gamedoora.backend.userservices.dto.SourceDTO;
+import com.gamedoora.backend.userservices.mapper.SourceMapper;
 import com.gamedoora.backend.userservices.repository.SourcesRepository;
 import com.gamedoora.model.dao.Sources;
 import java.util.ArrayList;
@@ -15,15 +16,11 @@ public class SourcesServicesAssembler {
 
   @Autowired private SourcesRepository sourcesRepository;
 
+  @Autowired private SourceMapper sourceMapper;
+
   public SourceDTO createSources(SourceDTO sourcesDto) {
 
-    Sources sources = new Sources();
-    sources.setName(sourcesDto.getName());
-    sources.setCreatedBy("GameDoora");
-    sources.setUpdateBy("GameDoora");
-    sources.setCreatedOn(new Date());
-    sources.setUpdateOn(new Date());
-
+    Sources sources = sourceMapper.sourceDtoToSources(sourcesDto);
     sourcesRepository.save(sources);
     return sourcesDto;
   }
@@ -49,13 +46,13 @@ public class SourcesServicesAssembler {
     sourcesRepository.deleteAll();
   }
 
-  public List<Sources> getAllSources(String name) {
-    List<Sources> sources = new ArrayList<>();
+  public List<SourceDTO> getAllSources(String name) {
+    List<SourceDTO> sourcesDto = new ArrayList<>();
     if (name == null) {
-      sourcesRepository.findAll().forEach(sources::add);
-      return sources;
+      sourcesRepository.findAll().forEach(sources -> sourcesDto.add(sourceMapper.sourceToSourceDTO(sources)));
+      return sourcesDto;
     }
-    sourcesRepository.findByNameContaining(name).forEach(sources::add);
-    return sources;
+    sourcesRepository.findByNameContaining(name).forEach(sources -> sourcesDto.add(sourceMapper.sourceToSourceDTO(sources)));
+    return sourcesDto;
   }
 }

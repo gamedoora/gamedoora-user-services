@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.gamedoora.backend.userservices.mapper.SkillsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,19 +22,14 @@ public class SkillsServicesAssembler {
   @Autowired
   private SkillsRepository skillsRepository;
 
-  public SkillsDTO createSkills(SkillsDTO SkillsDto) {
+  @Autowired
+  private SkillsMapper skillsMapper;
 
-    Skills skills = new Skills();
-    skills.setName(SkillsDto.getName());
-    skills.setDescription(SkillsDto.getDescription());
-    skills.setCreatedBy("GameDoora");
-    skills.setUpdateBy("GameDoora");
-    skills.setCreatedOn(new Date());
-    skills.setUpdateOn(new Date());
+  public SkillsDTO createSkills(SkillsDTO skillsDto) {
 
+    Skills skills = skillsMapper.skillsDtoToSkills(skillsDto);
     skillsRepository.save(skills);
-
-    return SkillsDto;
+    return skillsDto;
   }
 
   public SkillsDTO updateSkills(long id, SkillsDTO skillsDto) {
@@ -57,13 +53,13 @@ public class SkillsServicesAssembler {
     skillsRepository.deleteAll();
   }
 
-  public List<Skills> getAllSkills(String name) {
-    List<Skills> skills = new ArrayList<Skills>();
+  public List<SkillsDTO> getAllSkills(String name) {
+    List<SkillsDTO> skillsDTOList = new ArrayList<>();
     if (name == null) {
-      skillsRepository.findAll().forEach(skills::add);
-      return skills;
+      skillsRepository.findAll().forEach(skills -> skillsDTOList.add(skillsMapper.skillsToSkillsDTO(skills)));
+      return skillsDTOList;
     }
-    skillsRepository.findByNameContaining(name).forEach(skills::add);
-    return skills;
+    skillsRepository.findByNameContaining(name).forEach(skills -> skillsDTOList.add(skillsMapper.skillsToSkillsDTO(skills)));
+    return skillsDTOList;
   }
 }

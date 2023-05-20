@@ -6,11 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mapstruct.factory.Mappers;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Import;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,7 +16,6 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-//@RunWith(SpringRunner.class)
 class UserMapperTest {
 
    private final UserMapper userMapper = Mappers.getMapper(UserMapper.class);
@@ -113,7 +108,7 @@ throw error.
     @Test
     public void testUserToUserDto(){
         // When
-        UserDTO testUserDto = userMapper.userstoUserDTO(users);
+        UserDTO testUserDto = userMapper.usersToUserDTO(users);
 
         // Then
         assertEquals(users.getEmail(), testUserDto.getEmail());
@@ -175,6 +170,7 @@ throw error.
         assertEquals(testUserSkillsList.get(1).getSkills().getName() , "Water");
         assertEquals(testUserSkillsList.get(0).getSkills().getName() , "Fire");
         assertEquals(testUserRoleList.get(0).getRoles().getName() , "Major");
+        assertEquals(testUser.getCreatedBy() , "GameDoora");
 
     }
 }

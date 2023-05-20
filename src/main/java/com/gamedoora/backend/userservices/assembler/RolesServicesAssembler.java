@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.gamedoora.backend.userservices.mapper.RolesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,16 +18,11 @@ public class RolesServicesAssembler {
 
   @Autowired private RolesRepository rolesRepository;
 
+  @Autowired private RolesMapper rolesMapper;
+
   public RoleDTO createRoles(RoleDTO rolesDto) {
 
-    Roles roles = new Roles();
-    roles.setName(rolesDto.getName());
-    roles.setDescription(rolesDto.getDescription());
-    roles.setCreatedBy("GameDoora");
-    roles.setUpdateBy("GameDoora");
-    roles.setCreatedOn(new Date());
-    roles.setUpdateOn(new Date());
-
+    Roles roles = rolesMapper.roleDtoToRoles(rolesDto);
     rolesRepository.save(roles);
     return rolesDto;
   }
@@ -52,11 +48,11 @@ public class RolesServicesAssembler {
     rolesRepository.deleteAll();
   }
 
-  public List<Roles> getAllRoles(String name) {
-    List<Roles> roles = new ArrayList<>();
-    if (name == null) rolesRepository.findAll().forEach(roles::add);
-    else rolesRepository.findByNameContaining(name).forEach(roles::add);
+  public List<RoleDTO> getAllRoles(String name) {
+    List<RoleDTO> roleDTOList = new ArrayList<>();
+    if (name == null) rolesRepository.findAll().forEach(roles -> roleDTOList.add(rolesMapper.roleToRoleDTO(roles)));
+    else rolesRepository.findByNameContaining(name).forEach(roles -> roleDTOList.add(rolesMapper.roleToRoleDTO(roles)));
 
-    return roles;
+    return roleDTOList;
   }
 }

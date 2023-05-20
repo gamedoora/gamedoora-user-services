@@ -4,12 +4,12 @@ import com.gamedoora.backend.userservices.dto.UserDTO;
 import com.gamedoora.backend.userservices.mapper.UserMapper;
 import com.gamedoora.backend.userservices.repository.UsersRepository;
 import com.gamedoora.model.dao.Users;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserServicesAssembler {
@@ -21,7 +21,6 @@ public class UserServicesAssembler {
   public UserDTO createUsers(UserDTO userDto) {
 
     Users users = userMapper.userDtoToUsers(userDto);
-//    users.setUserRole((obj));
     usersRepository.save(users);
     return userDto;
   }
@@ -37,6 +36,7 @@ public class UserServicesAssembler {
     users.setFirstName(userDto.getFirstName());
     users.setLastName(userDto.getLastName());
     usersRepository.save(users);
+
     return userDto;
   }
 
@@ -48,14 +48,14 @@ public class UserServicesAssembler {
     usersRepository.deleteAll();
   }
 
-  public List<Users> getAllUsers(String email) {
+  public List<UserDTO> getAllUsers(String email) {
 
-    List<Users> users = new ArrayList<>();
-    if (email == null) usersRepository.findAll().forEach(users::add);
-    else usersRepository.findByEmailContaining(email).forEach(users::add);
-    if (users.isEmpty()) {
+    List<UserDTO> usersDto = new ArrayList<>();
+    if (email == null) usersRepository.findAll().forEach(user -> usersDto.add(userMapper.usersToUserDTO(user)));
+    else usersRepository.findByEmailContaining(email).forEach(user -> usersDto.add(userMapper.usersToUserDTO(user)));
+    if (usersDto.isEmpty()) {
       return null;
     }
-    return users;
+    return usersDto;
   }
 }

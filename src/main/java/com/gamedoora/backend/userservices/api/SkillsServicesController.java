@@ -59,7 +59,7 @@ public class SkillsServicesController extends BaseController {
   @GetMapping(
       value = "/",
       produces = {MediaType.APPLICATION_JSON_VALUE})
-  public ResponseEntity<List<Skills>> getAllSkills(@RequestParam(required = false) String name) {
+  public ResponseEntity<List<SkillsDTO>> getAllSkills(@RequestParam(required = false) String name) {
 		return createResponse(skillsServicesAssembler.getAllSkills(name), HttpStatus.OK);
 	}
 }

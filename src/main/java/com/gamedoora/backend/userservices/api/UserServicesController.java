@@ -62,7 +62,7 @@ public class UserServicesController extends BaseController {
   @GetMapping(
       value = "/",
       produces = {MediaType.APPLICATION_JSON_VALUE})
-  public ResponseEntity<List<Users>> getAllUsers(@RequestParam(required = false) String name) {
+  public ResponseEntity<List<UserDTO>> getAllUsers(@RequestParam(required = false) String name) {
     return createResponse(userServicesAssembler.getAllUsers(name), HttpStatus.OK);
   }
 }

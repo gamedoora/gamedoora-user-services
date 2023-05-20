@@ -1,18 +1,17 @@
 package com.gamedoora.backend.userservices.mapper;
 
-import com.gamedoora.backend.userservices.dto.UserDTO;
-import com.gamedoora.model.dao.Users;
+import com.gamedoora.backend.userservices.dto.SourceDTO;
+import com.gamedoora.model.dao.Sources;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper
-public abstract class UserMapper extends BaseMapper{
-    public abstract UserDTO usersToUserDTO(Users users);
+public abstract class SourceMapper extends BaseMapper{
+    public abstract SourceDTO sourceToSourceDTO(Sources sources);
 
     @Mapping(target = "createdBy" , expression = "java(getCreatedBy())")
     @Mapping(target = "createdOn" , expression = "java(getNewDate())")
     @Mapping(target = "updateBy" , expression = "java(getUpdatedBy())")
     @Mapping(target = "updateOn" , expression = "java(getNewDate())")
-    public abstract Users userDtoToUsers(UserDTO userDTO);
-
+    public abstract Sources sourceDtoToSources(SourceDTO sourceDTO);
 }
