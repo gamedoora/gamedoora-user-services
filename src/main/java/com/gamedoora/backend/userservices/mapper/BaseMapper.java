@@ -13,7 +13,7 @@ public abstract class BaseMapper {
         return creator;
     }
 
-    @Named("UpdatedBY")
+    @Named("UpdatedBy")
     public String getUpdatedBy(){
         return creator;
     }
