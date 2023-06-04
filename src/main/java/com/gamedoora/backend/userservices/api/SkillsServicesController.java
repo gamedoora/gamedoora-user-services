@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gamedoora.backend.userservices.assembler.SkillsServicesAssembler;
 import com.gamedoora.backend.userservices.dto.SkillsDTO;
-import com.gamedoora.model.dao.Skills;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 

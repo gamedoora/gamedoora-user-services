@@ -3,7 +3,7 @@ package com.gamedoora.backend.userservices.api;
 import com.gamedoora.backend.userservices.assembler.UserServicesAssembler;
 import com.gamedoora.backend.userservices.dto.UserDTO;
 import com.gamedoora.backend.userservices.exceptions.NotFoundException;
-import com.gamedoora.model.dao.Users;
+
 import java.text.MessageFormat;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

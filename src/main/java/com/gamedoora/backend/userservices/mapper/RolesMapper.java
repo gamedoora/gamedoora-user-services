@@ -9,9 +9,9 @@ import org.mapstruct.Mapping;
 public abstract class RolesMapper extends BaseMapper{
     public abstract RoleDTO roleToRoleDTO(Roles roles);
 
-    @Mapping(target = "createdBy" , expression = "java(getCreatedBy())")
-    @Mapping(target = "createdOn" , expression = "java(getNewDate())")
-    @Mapping(target = "updateBy" , expression = "java(getUpdatedBy())")
-    @Mapping(target = "updateOn" , expression = "java(getNewDate())")
+    @Mapping(target = "createdBy" , qualifiedByName = "CreatedBy")
+    @Mapping(target = "createdOn" , qualifiedByName = "NewDate")
+    @Mapping(target = "updateBy" , qualifiedByName = "UpdatedBy")
+    @Mapping(target = "updateOn" , qualifiedByName = "NewDate")
     public abstract Roles roleDtoToRoles(RoleDTO roleDTO);
 }

@@ -1,17 +1,13 @@
 package com.gamedoora.backend.userservices.assembler;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import com.gamedoora.backend.userservices.mapper.SkillsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
-import com.gamedoora.backend.userservices.dto.RoleDTO;
 import com.gamedoora.backend.userservices.dto.SkillsDTO;
 import com.gamedoora.backend.userservices.repository.SkillsRepository;
 import com.gamedoora.model.dao.Skills;

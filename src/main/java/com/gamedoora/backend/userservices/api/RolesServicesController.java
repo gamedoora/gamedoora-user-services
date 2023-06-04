@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gamedoora.backend.userservices.assembler.RolesServicesAssembler;
 import com.gamedoora.backend.userservices.dto.RoleDTO;
 import com.gamedoora.backend.userservices.exceptions.NotFoundException;
-import com.gamedoora.model.dao.Roles;
+
 import java.text.MessageFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
