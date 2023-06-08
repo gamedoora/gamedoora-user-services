@@ -12,9 +12,9 @@ public abstract class UserMapper extends BaseMapper{
     public abstract UserDTO usersToUserDTO(Users users);
 
     @Mapping(target = "createdBy" , expression = "java(getCreatedBy())")
-    @Mapping(target = "createdOn" , qualifiedByName = "NewDate")
-    @Mapping(target = "updateBy" , qualifiedByName = "UpdatedBy")
-    @Mapping(target = "updateOn" , qualifiedByName = "NewDate")
+    @Mapping(target = "createdOn" , expression = "java(getNewDate())")
+    @Mapping(target = "updateBy" , expression = "java(getUpdatedBy())")
+    @Mapping(target = "updateOn" , expression = "java(getNewDate())")
     public abstract Users userDtoToUsers(UserDTO userDTO);
 
 }

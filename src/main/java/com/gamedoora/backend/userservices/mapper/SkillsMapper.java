@@ -9,9 +9,9 @@ import org.mapstruct.Mapping;
 public abstract class SkillsMapper extends BaseMapper{
     public abstract SkillsDTO skillsToSkillsDTO(Skills skills);
 
-    @Mapping(target = "createdBy" , qualifiedByName = "CreatedBy")
-    @Mapping(target = "createdOn" , qualifiedByName = "NewDate")
-    @Mapping(target = "updateBy" , qualifiedByName = "UpdatedBy")
-    @Mapping(target = "updateOn" , qualifiedByName = "NewDate")
+    @Mapping(target = "createdBy" , expression = "java(getCreatedBy())")
+    @Mapping(target = "createdOn" , expression = "java(getNewDate())")
+    @Mapping(target = "updateBy" , expression = "java(getUpdatedBy())")
+    @Mapping(target = "updateOn" , expression = "java(getNewDate())")
     public abstract Skills skillsDtoToSkills(SkillsDTO skillsDTO);
 }
