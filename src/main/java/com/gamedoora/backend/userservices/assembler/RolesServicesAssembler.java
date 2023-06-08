@@ -49,8 +49,8 @@ public class RolesServicesAssembler {
 
   public List<RoleDTO> getAllRoles(String name) {
     List<RoleDTO> roleDTOList = new ArrayList<>();
-    if (name == null) rolesRepository.findAll().forEach(roles -> roleDTOList.add(rolesMapper.roleToRoleDTO(roles)));
-    else rolesRepository.findByNameContaining(name).forEach(roles -> roleDTOList.add(rolesMapper.roleToRoleDTO(roles)));
+    if (name == null) rolesRepository.findAll().forEach(roles -> roleDTOList.add(rolesMapper.roleToRoleDto(roles)));
+    else rolesRepository.findByNameContaining(name).forEach(roles -> roleDTOList.add(rolesMapper.roleToRoleDto(roles)));
 
     return roleDTOList;
   }
