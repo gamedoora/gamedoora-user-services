@@ -1,7 +1,7 @@
 package com.gamedoora.backend.userservices.api;
 
 import com.gamedoora.backend.userservices.assembler.SourcesServicesAssembler;
-import com.gamedoora.backend.userservices.dto.SourceDTO;
+import dto.SourceDTO;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.gamedoora.backend.userservices.api;
 
 import com.gamedoora.backend.userservices.assembler.UserServicesAssembler;
-import com.gamedoora.backend.userservices.dto.UserDTO;
+import dto.UserDTO;
 import com.gamedoora.backend.userservices.exceptions.NotFoundException;
 
 import java.text.MessageFormat;

@@ -1,7 +1,7 @@
 package com.gamedoora.backend.userservices.assembler;
 
-import com.gamedoora.backend.userservices.dto.UserDTO;
-import com.gamedoora.backend.userservices.mapper.UserMapper;
+import dto.UserDTO;
+import mapper.UserMapper;
 import com.gamedoora.backend.userservices.repository.UsersRepository;
 import com.gamedoora.model.dao.Users;
 import org.springframework.beans.factory.annotation.Autowired;

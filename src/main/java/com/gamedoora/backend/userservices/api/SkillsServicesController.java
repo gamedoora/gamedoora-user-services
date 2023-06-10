@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gamedoora.backend.userservices.assembler.SkillsServicesAssembler;
-import com.gamedoora.backend.userservices.dto.SkillsDTO;
+import dto.SkillsDTO;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 
