@@ -1,13 +1,13 @@
 package com.gamedoora.backend.userservices.assembler;
 
-import dto.SourceDTO;
+import com.gamedoora.model.dto.SourceDTO;
 import com.gamedoora.backend.userservices.repository.SourcesRepository;
 import com.gamedoora.model.dao.Sources;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import mapper.SourceMapper;
+import com.gamedoora.model.mapper.SourceMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

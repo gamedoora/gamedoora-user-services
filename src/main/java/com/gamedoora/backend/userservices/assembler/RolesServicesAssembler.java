@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import mapper.RolesMapper;
+import com.gamedoora.model.mapper.RolesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dto.RoleDTO;
+import com.gamedoora.model.dto.RoleDTO;
 import com.gamedoora.backend.userservices.repository.RolesRepository;
 import com.gamedoora.model.dao.Roles;
 

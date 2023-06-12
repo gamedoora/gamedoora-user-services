@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import mapper.SkillsMapper;
+import com.gamedoora.model.mapper.SkillsMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import dto.SkillsDTO;
+import com.gamedoora.model.dto.SkillsDTO;
 import com.gamedoora.backend.userservices.repository.SkillsRepository;
 import com.gamedoora.model.dao.Skills;
 
