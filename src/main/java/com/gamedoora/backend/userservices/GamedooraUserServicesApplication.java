@@ -8,7 +8,6 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = LiquibaseAutoConfiguration.class)
-@EnableConfigServer
 public class GamedooraUserServicesApplication {
 
 	public static void main(String[] args) {
