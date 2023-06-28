@@ -5,19 +5,21 @@ import org.keycloak.OAuth2Constants;
 import org.keycloak.admin.client.Keycloak;
 import org.keycloak.admin.client.KeycloakBuilder;
 import org.keycloak.admin.client.resource.UsersResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class KeycloakConfig {
+    private PropertiesConfig propertiesConfig;
     public Keycloak keycloak(){
         Keycloak keycloak = KeycloakBuilder.builder()
-                .serverUrl("")
+                .serverUrl(getPropertiesConfig().getKeycloakServerUrl())
                 .grantType(OAuth2Constants.PASSWORD)
-                .realm("")
-                .clientId("")
-                .username("")
-                .password("")
+                .realm(getPropertiesConfig().getKeycloakRealm())
+                .clientId(getPropertiesConfig().getKeycloakClientId())
+                .username(getPropertiesConfig().getKeycloakUserName())
+                .password(getPropertiesConfig().getKeycloakPassword())
                 .resteasyClient(
                         new ResteasyClientBuilder()
                                 .connectionPoolSize(10)
@@ -29,7 +31,14 @@ public class KeycloakConfig {
 
     @Bean("usersResource")
     public UsersResource usersResource(){
-        return keycloak().realm("").users();
+        return keycloak().realm(getPropertiesConfig().getKeycloakRealm()).users();
     }
 
+    public PropertiesConfig getPropertiesConfig() {
+        return propertiesConfig;
+    }
+   @Autowired
+    public void setPropertiesConfig(PropertiesConfig propertiesConfig) {
+        this.propertiesConfig = propertiesConfig;
+    }
 }
