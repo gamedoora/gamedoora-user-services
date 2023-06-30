@@ -14,9 +14,27 @@ import org.springframework.stereotype.Component;
 @Component
 public class SourcesServicesAssembler {
 
-  @Autowired private SourcesRepository sourcesRepository;
+  private SourcesRepository sourcesRepository;
 
-  @Autowired private SourceMapper sourceMapper;
+  private SourceMapper sourceMapper;
+
+  public SourcesRepository getSourcesRepository() {
+    return sourcesRepository;
+  }
+
+  @Autowired
+  public void setSourcesRepository(SourcesRepository sourcesRepository) {
+    this.sourcesRepository = sourcesRepository;
+  }
+
+  public SourceMapper getSourceMapper() {
+    return sourceMapper;
+  }
+
+  @Autowired
+  public void setSourceMapper(SourceMapper sourceMapper){
+    this.sourceMapper = sourceMapper;
+  }
 
   public SourceDTO createSources(SourceDTO sourcesDto) {
 
@@ -39,20 +57,20 @@ public class SourcesServicesAssembler {
   }
 
   public void deleteSources(long id) {
-    sourcesRepository.deleteById(id);
+    getSourcesRepository().deleteById(id);
   }
 
   public void deleteAllSources() {
-    sourcesRepository.deleteAll();
+    getSourcesRepository().deleteAll();
   }
 
   public List<SourceDTO> getAllSources(String name) {
     List<SourceDTO> sourcesDto = new ArrayList<>();
     if (name == null) {
-      sourcesRepository.findAll().forEach(sources -> sourcesDto.add(sourceMapper.sourceToSourceDTO(sources)));
+      sourcesRepository.findAll().forEach(sources -> sourcesDto.add(getSourceMapper().sourceToSourceDTO(sources)));
       return sourcesDto;
     }
-    sourcesRepository.findByNameContaining(name).forEach(sources -> sourcesDto.add(sourceMapper.sourceToSourceDTO(sources)));
+    sourcesRepository.findByNameContaining(name).forEach(sources -> sourcesDto.add(getSourceMapper().sourceToSourceDTO(sources)));
     return sourcesDto;
   }
 }

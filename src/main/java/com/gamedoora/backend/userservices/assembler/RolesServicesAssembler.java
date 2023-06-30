@@ -15,9 +15,27 @@ import com.gamedoora.model.dao.Roles;
 @Component
 public class RolesServicesAssembler {
 
-  @Autowired private RolesRepository rolesRepository;
+  private RolesRepository rolesRepository;
 
-  @Autowired private RolesMapper rolesMapper;
+  private RolesMapper rolesMapper;
+
+  public RolesRepository getRolesRepository() {
+    return rolesRepository;
+  }
+
+  @Autowired
+  public void setRolesRepository(RolesRepository rolesRepository) {
+    this.rolesRepository = rolesRepository;
+  }
+
+  @Autowired
+  public void setRolesMapper(RolesMapper rolesMapper){
+    this.rolesMapper = rolesMapper;
+  }
+
+  public RolesMapper getRolesMapper(){
+    return rolesMapper;
+  }
 
   public RoleDTO createRoles(RoleDTO rolesDto) {
 
@@ -40,17 +58,17 @@ public class RolesServicesAssembler {
   }
 
   public void deleteRoles(long id) {
-    rolesRepository.deleteById(id);
+    getRolesRepository().deleteById(id);
   }
 
   public void deleteAllRoles() {
-    rolesRepository.deleteAll();
+    getRolesRepository().deleteAll();
   }
 
   public List<RoleDTO> getAllRoles(String name) {
     List<RoleDTO> roleDTOList = new ArrayList<>();
-    if (name == null) rolesRepository.findAll().forEach(roles -> roleDTOList.add(rolesMapper.roleToRoleDto(roles)));
-    else rolesRepository.findByNameContaining(name).forEach(roles -> roleDTOList.add(rolesMapper.roleToRoleDto(roles)));
+    if (name == null) rolesRepository.findAll().forEach(roles -> roleDTOList.add(getRolesMapper().roleToRoleDto(roles)));
+    else rolesRepository.findByNameContaining(name).forEach(roles -> roleDTOList.add(getRolesMapper().roleToRoleDto(roles)));
 
     return roleDTOList;
   }

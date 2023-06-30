@@ -14,9 +14,27 @@ import java.util.Optional;
 @Component
 public class UserServicesAssembler {
 
-  @Autowired private UsersRepository usersRepository;
+  private UsersRepository usersRepository;
 
-  @Autowired private UserMapper userMapper;
+  private UserMapper userMapper;
+
+  public UsersRepository getUsersRepository() {
+    return usersRepository;
+  }
+
+  @Autowired
+  public void setUsersRepository(UsersRepository usersRepository) {
+    this.usersRepository = usersRepository;
+  }
+
+  public UserMapper getUserMapper() {
+    return userMapper;
+  }
+
+  @Autowired
+  public void setUserMapper(UserMapper userMapper) {
+    this.userMapper = userMapper;
+  }
 
   public UserDTO createUsers(UserDTO userDto) {
 
@@ -41,18 +59,18 @@ public class UserServicesAssembler {
   }
 
   public void deleteUsers(long id) {
-    usersRepository.deleteById(id);
+    getUsersRepository().deleteById(id);
   }
 
   public void deleteAllUsers() {
-    usersRepository.deleteAll();
+    getUsersRepository().deleteAll();
   }
 
   public List<UserDTO> getAllUsers(String email) {
 
     List<UserDTO> usersDto = new ArrayList<>();
-    if (email == null) usersRepository.findAll().forEach(user -> usersDto.add(userMapper.usersToUserDTO(user)));
-    else usersRepository.findByEmailContaining(email).forEach(user -> usersDto.add(userMapper.usersToUserDTO(user)));
+    if (email == null) usersRepository.findAll().forEach(user -> usersDto.add(getUserMapper().usersToUserDTO(user)));
+    else usersRepository.findByEmailContaining(email).forEach(user -> usersDto.add(getUserMapper().usersToUserDTO(user)));
     if (usersDto.isEmpty()) {
       return null;
     }

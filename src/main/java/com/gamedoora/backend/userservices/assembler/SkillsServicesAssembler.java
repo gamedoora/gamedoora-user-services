@@ -15,11 +15,28 @@ import com.gamedoora.model.dao.Skills;
 @Component
 public class SkillsServicesAssembler {
 
-  @Autowired
   private SkillsRepository skillsRepository;
 
-  @Autowired
   private SkillsMapper skillsMapper;
+
+  public SkillsRepository getSkillsRepository() {
+    return skillsRepository;
+  }
+
+  @Autowired
+  public void setSkillsRepository(SkillsRepository skillsRepository) {
+    this.skillsRepository = skillsRepository;
+  }
+
+  @Autowired
+  public void setSkillsMapper(SkillsMapper skillsMapper){
+    this.skillsMapper = skillsMapper;
+  }
+
+  public SkillsMapper getSkillsMapper(){
+    return skillsMapper;
+  }
+
 
   public SkillsDTO createSkills(SkillsDTO skillsDto) {
 
@@ -42,20 +59,20 @@ public class SkillsServicesAssembler {
   }
 
   public void deleteSkills(long id) {
-    skillsRepository.deleteById(id);
+    getSkillsRepository().deleteById(id);
   }
 
   public void deleteAllSkills() {
-    skillsRepository.deleteAll();
+    getSkillsRepository().deleteAll();
   }
 
   public List<SkillsDTO> getAllSkills(String name) {
     List<SkillsDTO> skillsDTOList = new ArrayList<>();
     if (name == null) {
-      skillsRepository.findAll().forEach(skills -> skillsDTOList.add(skillsMapper.skillsToSkillsDTO(skills)));
+      skillsRepository.findAll().forEach(skills -> skillsDTOList.add(getSkillsMapper().skillsToSkillsDTO(skills)));
       return skillsDTOList;
     }
-    skillsRepository.findByNameContaining(name).forEach(skills -> skillsDTOList.add(skillsMapper.skillsToSkillsDTO(skills)));
+    skillsRepository.findByNameContaining(name).forEach(skills -> skillsDTOList.add(getSkillsMapper().skillsToSkillsDTO(skills)));
     return skillsDTOList;
   }
 }
