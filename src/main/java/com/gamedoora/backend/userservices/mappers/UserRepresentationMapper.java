@@ -1,6 +1,7 @@
 package com.gamedoora.backend.userservices.mappers;
 
-import com.gamedoora.backend.userservices.dto.UserDTO;
+
+import com.gamedoora.model.dto.UserDTO;
 import org.keycloak.representations.idm.CredentialRepresentation;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.mapstruct.Mapper;

@@ -1,8 +1,8 @@
 package com.gamedoora.backend.userservices.helpers;
 
 import com.gamedoora.backend.userservices.constants.KeycloakConstants;
-import com.gamedoora.backend.userservices.dto.UserDTO;
 import com.gamedoora.backend.userservices.mappers.UserRepresentationMapper;
+import com.gamedoora.model.dto.UserDTO;
 import org.keycloak.admin.client.resource.UsersResource;
 import org.keycloak.representations.idm.UserRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
