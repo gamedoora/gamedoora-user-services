@@ -11,7 +11,7 @@ import org.springframework.context.annotation.PropertySource;
  */
 @Configuration
 @RefreshScope
-@PropertySource("classpath:application.properties")
+
 public class PropertiesConfig {
 
     private String primaryDbUrl;
