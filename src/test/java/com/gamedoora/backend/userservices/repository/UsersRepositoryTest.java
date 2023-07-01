@@ -71,6 +71,9 @@ class UsersRepositoryTest {
 
     @Test
     void findRolesBySkill() {
+        usersRepository.save(user);
+        List<UserRole> userRoleList = usersRepository.findRolesBySkill(userSkills);
+        assertFalse(userRoleList.isEmpty());
     }
 
     @Test
