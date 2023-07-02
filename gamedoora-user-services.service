@@ -3,8 +3,8 @@ Description=gamedoora-user-services
 After=syslog.target
 
 [Service]
-User=myapp
-ExecStart=/var/myapp/myapp.jar
+User=ec2-user
+ExecStart=/home/ec2-user/server/user-services/gamedoora-user-services.jar
 SuccessExitStatus=143
 
 [Install]
