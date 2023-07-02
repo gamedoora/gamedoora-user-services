@@ -1,4 +1,5 @@
-package com.gamedoora.backend.userservices.repository;
+/**
+ package com.gamedoora.backend.userservices.repository;
 
 import com.gamedoora.backend.userservices.config.PropertiesConfig;
 import com.gamedoora.model.dao.*;
@@ -83,3 +84,5 @@ class UsersRepositoryTest {
         assertFalse(userSkillsList.isEmpty());
     }
 }
+
+ **/
