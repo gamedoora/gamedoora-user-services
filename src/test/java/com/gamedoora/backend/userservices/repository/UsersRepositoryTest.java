@@ -1,5 +1,5 @@
 /**
- package com.gamedoora.backend.userservices.repository;
+package com.gamedoora.backend.userservices.repository;
 
 import com.gamedoora.backend.userservices.config.PropertiesConfig;
 import com.gamedoora.model.dao.*;
@@ -37,6 +37,8 @@ class UsersRepositoryTest {
         userRole = UserRole.builder().roles(role).build();
         userSkills = UserSkills.builder().skills(skill).build();
 
+        skill = Skills.builder().id(1L).build();
+
         user = Users.builder()
                 .id(1L)
                 .firstName("Test")
@@ -71,18 +73,17 @@ class UsersRepositoryTest {
     }
 
     @Test
-    void findRolesBySkill() {
+    void findRolesBySkill_SkillsId() {
         usersRepository.save(user);
-        List<UserRole> userRoleList = usersRepository.findRolesBySkill(userSkills);
+        List<UserRole> userRoleList = usersRepository.findRolesBySkill_SkillsId(skill.getId());
         assertFalse(userRoleList.isEmpty());
     }
 
     @Test
-    void listUsersBySkill() {
+    void listUsersBySkill_SkillsId() {
         usersRepository.save(user);
-        List<Users> userSkillsList = usersRepository.listUsersBySkill(userSkills);
+        List<Users> userSkillsList = usersRepository.listUsersBySkill_SkillsId(skill.getId());
         assertFalse(userSkillsList.isEmpty());
     }
 }
-
- **/
+**/
