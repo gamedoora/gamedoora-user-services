@@ -26,6 +26,6 @@ public interface UsersRepository extends JpaRepository<Users, Long> {
 	List<UserRole> findRolesBySkill(UserSkills skill);
 	// multiple roles with one skill
 
-	List<Users> listUsersBySkill(UserSkills skill);
+	List<Users> listUsersBySkill_SkillsId(Long skillsId);
 
 }
