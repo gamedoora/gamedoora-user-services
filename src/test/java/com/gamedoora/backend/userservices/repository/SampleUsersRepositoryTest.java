@@ -1,20 +1,26 @@
-/**package com.gamedoora.backend.userservices.repository;
+package com.gamedoora.backend.userservices.repository;
 
-import com.gamedoora.backend.userservices.config.PropertiesConfig;
 import com.gamedoora.model.dao.Users;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import javax.persistence.EntityManager;
+import javax.sql.DataSource;
 
-@DataJpaTest
-@EnableConfigurationProperties(value= PropertiesConfig.class)
-@TestPropertySource("classpath:test.properties")
+
+@DataJpaTest(properties = {"spring.cloud.config.enabled=false"})
 class SampleUsersRepositoryTest {
+    @Autowired private DataSource dataSource;
+    @Autowired private JdbcTemplate jdbcTemplate;
+    @Autowired private EntityManager entityManager;
     @Autowired
     private UsersRepository usersRepository;
 
@@ -26,6 +32,7 @@ class SampleUsersRepositoryTest {
                 .id(1L)
                 .firstName("Test")
                 .email("test@gmail.com")
+                .providerToken("")
                 .build();
     }
 
@@ -45,4 +52,4 @@ class SampleUsersRepositoryTest {
          assertThat(userDB).isNotNull();
     }
 
-}**/
+}
