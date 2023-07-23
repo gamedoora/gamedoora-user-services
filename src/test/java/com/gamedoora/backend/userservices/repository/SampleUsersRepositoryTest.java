@@ -18,9 +18,7 @@ import javax.sql.DataSource;
 
 @DataJpaTest(properties = {"spring.cloud.config.enabled=false"})
 class SampleUsersRepositoryTest {
-    @Autowired private DataSource dataSource;
-    @Autowired private JdbcTemplate jdbcTemplate;
-    @Autowired private EntityManager entityManager;
+
     @Autowired
     private UsersRepository usersRepository;
 
