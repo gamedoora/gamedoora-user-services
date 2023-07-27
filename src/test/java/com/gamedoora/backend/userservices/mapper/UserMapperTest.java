@@ -1,11 +1,12 @@
 //package com.gamedoora.backend.userservices.mapper;
-//
+
 //import com.gamedoora.model.dao.Roles;
 //import com.gamedoora.model.dao.Skills;
 //import com.gamedoora.model.dao.UserRole;
 //import com.gamedoora.model.dao.UserSkills;
 //import com.gamedoora.model.dao.Users;
 //import com.gamedoora.model.dto.UserDTO;
+
 //import com.gamedoora.model.mapper.UserMapper;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@
 //import java.util.Date;
 //import java.util.List;
 //import java.util.Set;
-//
+
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertNotNull;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -181,6 +182,7 @@
 //        assertEquals(testUserSkillsList.get(1).getName() , "Water");
 //        assertEquals(testUserSkillsList.get(0).getName() , "Fire");
 //        assertEquals(testUserRoleList.get(0).getName() , "Major");
+
 //        assertEquals(testUser.getCreatedBy() , "GameDoora");
 //
 //    }
