@@ -1,5 +1,6 @@
 package com.gamedoora.backend.userservices.assembler;
 
+import com.gamedoora.backend.userservices.helpers.UserOperationsHelper;
 import com.gamedoora.model.dto.UserDTO;
 import com.gamedoora.model.mapper.UserMapper;
 import com.gamedoora.backend.userservices.repository.UsersRepository;
@@ -17,6 +18,17 @@ public class UserServicesAssembler {
   private UsersRepository usersRepository;
 
   private UserMapper userMapper;
+
+  private UserOperationsHelper userOperationsHelper;
+
+  public UserOperationsHelper getUserOperationsHelper() {
+    return userOperationsHelper;
+  }
+
+  @Autowired
+  public void setUserOperationsHelper(UserOperationsHelper userOperationsHelper) {
+    this.userOperationsHelper = userOperationsHelper;
+  }
 
   public UsersRepository getUsersRepository() {
     return usersRepository;
@@ -40,6 +52,10 @@ public class UserServicesAssembler {
 
     Users users = userMapper.userDtoToUsers(userDto);
     usersRepository.save(users);
+
+    userOperationsHelper.addUser(userDto);
+    //exception mapper implm, this will automatically catch exception and handle it.
+
     return userDto;
   }
 
