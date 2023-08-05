@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -46,21 +47,21 @@ class UsersRepositoryTest {
         usersRepository.save(users);
 
         Optional<Users> dummy = usersRepository.findById(1L);
-        Users test = usersRepository.findByFirstName("ok");
+        List<Users> userValue = usersRepository.findByFirstName(users.getFirstName());
 
         List<Users> sample = usersRepository.findBySkills_Name("sample");
 
         assertNotNull(sample);
         assertNotNull(dummy);
-        assertNull(test);
+        assertNotNull(userValue);
     }
 
     @Test
     void findByName() {
         usersRepository.save(users);
-        Users userValue = usersRepository.findByFirstName(users.getFirstName());
+        List<Users> userValue = usersRepository.findByFirstName(users.getFirstName());
         assertNotNull(userValue);
-        assertEquals(userValue.getFirstName() , "Test");
+        assertEquals(userValue.get(0).getFirstName() , "Test");
     }
 
 }
