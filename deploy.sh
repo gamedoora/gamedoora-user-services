@@ -1,7 +1,7 @@
 #!/bin/bash
 
 JAR_FILE=target/*.jar
-REMOTE_DIRECTORY=/home/ec2-user/server/user-services
+REMOTE_DIRECTORY=opt/gamedoora
 REMOTE_JAR_FILE=user-services.jar
 
 # Create a temporary SSH key file
