@@ -39,7 +39,7 @@ class UsersRepositoryTest {
         usersRepository.save(users);
 
         Optional<Users> dummy = usersRepository.findById(1L);
-        Users test = usersRepository.findByFirstName("ok");
+        List<Users> test = usersRepository.findByFirstName("ok");
 
         List<Users> sample = usersRepository.findBySkills_Name("sample");
 
@@ -51,9 +51,9 @@ class UsersRepositoryTest {
     @Test
     void findByName() {
         usersRepository.save(users);
-        Users userValue = usersRepository.findByFirstName(users.getFirstName());
+        List<Users> userValue = usersRepository.findByFirstName(users.getFirstName());
         assertNotNull(userValue);
-        assertEquals(userValue.getFirstName() , "Test");
+        assertEquals(userValue.get(0).getFirstName() , "Test");
     }
 
 }
