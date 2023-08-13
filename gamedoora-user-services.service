@@ -1,6 +1,6 @@
 [Unit]
 Description=gamedoora-user-services
-After=syslog.target
+After=syslog.target gamedoora-config-server.service
 
 [Service]
 User=gamedoora
