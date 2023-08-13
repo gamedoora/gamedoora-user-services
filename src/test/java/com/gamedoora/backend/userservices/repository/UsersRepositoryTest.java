@@ -1,20 +1,13 @@
 package com.gamedoora.backend.userservices.repository;
 
-import com.gamedoora.model.dao.Roles;
-import com.gamedoora.model.dao.Skills;
-import com.gamedoora.model.dao.UserRole;
-import com.gamedoora.model.dao.UserSkills;
 import com.gamedoora.model.dao.Users;
-import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
