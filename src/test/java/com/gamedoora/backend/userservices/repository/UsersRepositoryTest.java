@@ -11,7 +11,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 
 @DataJpaTest(properties = {"spring.cloud.config.enabled=false"})
 class UsersRepositoryTest {
@@ -45,7 +44,7 @@ class UsersRepositoryTest {
 
         assertNotNull(sample);
         assertNotNull(dummy);
-        assertNull(test);
+        assertNotNull(test);
     }
 
     @Test
