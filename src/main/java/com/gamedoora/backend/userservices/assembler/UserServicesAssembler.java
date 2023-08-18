@@ -109,7 +109,9 @@ public class UserServicesAssembler {
     }
     return usersDto;
   }
-
+public UserDTO getUserByEmail(String email){
+    return getUserMapper().usersToUserDTO(getUsersRepository().findByEmail(email));
+}
   public List<UserDTO> getAllUsersByName(String name){
     List<UserDTO> userDtoList = new ArrayList<>();
     if (name == null) {
