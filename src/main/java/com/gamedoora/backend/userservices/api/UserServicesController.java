@@ -40,7 +40,7 @@ public class UserServicesController extends BaseController {
       consumes = {MediaType.APPLICATION_JSON_VALUE},
       produces = {MediaType.APPLICATION_JSON_VALUE})
   public ResponseEntity<UserDTO> updateUsers(
-      @PathVariable("id") long id, @RequestBody UserDTO usersDto) {
+          @PathVariable("id") long id, @RequestBody UserDTO usersDto) {
     UserDTO userDTO = getUserServicesAssembler().updateUsers(id, usersDto);
     if (null == userDTO) {
       throw new NotFoundException(MessageFormat.format("User by id {0} not found", id));
@@ -70,25 +70,25 @@ public class UserServicesController extends BaseController {
   @GetMapping(
           value = "/{name}",
           produces = {MediaType.APPLICATION_JSON_VALUE})
-  public ResponseEntity<List<UserDTO>> getAllUsersByName(@RequestParam(required = false) String name) {
+  public ResponseEntity<List<UserDTO>> getAllUsersByName(@PathVariable String name) {
     return createResponse(getUserServicesAssembler().getAllUsersByName(name), HttpStatus.OK);
   }
 
   @GetMapping(
           value = "/skills/{name}",
           produces = {MediaType.APPLICATION_JSON_VALUE})
-  public ResponseEntity<List<UserDTO>> getAllUsersBySkillsName(@RequestParam(required = false) String name) {
+  public ResponseEntity<List<UserDTO>> getAllUsersBySkillsName(@PathVariable String name) {
     return createResponse(getUserServicesAssembler().getAllUsersBySkillsName(name), HttpStatus.OK);
   }
 
   @GetMapping(
           value = "/roles/{name}",
           produces = {MediaType.APPLICATION_JSON_VALUE})
-  public ResponseEntity<List<UserDTO>> getAllUsersByRoles(@RequestParam(required = false) String name) {
+  public ResponseEntity<List<UserDTO>> getAllUsersByRoles(@PathVariable String name) {
     return createResponse(getUserServicesAssembler().getAllUsersByRoleName(name), HttpStatus.OK);
   }//confirm mapping
   @GetMapping(
-          value = "/",
+          value = "/email",
           produces = {MediaType.APPLICATION_JSON_VALUE})
   public ResponseEntity<UserDTO> getUserByEmail(@RequestParam(required = true) String email) {
     return createResponse(getUserServicesAssembler().getUserByEmail(email), HttpStatus.OK);

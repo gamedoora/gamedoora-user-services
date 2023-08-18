@@ -62,12 +62,12 @@ public class RolesServicesController extends BaseController {
 		return createResponse(getRolesServicesAssembler().getAllRoles(name), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/", produces =  {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/skills", produces =  {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<RoleDTO>> getAllRolesBySkillName(@RequestParam(required = false) String name) {
 		return createResponse(getRolesServicesAssembler().getAllRolesBySkillName(name), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/", produces =  {MediaType.APPLICATION_JSON_VALUE})
+	@GetMapping(value = "/users", produces =  {MediaType.APPLICATION_JSON_VALUE})
 	public ResponseEntity<List<RoleDTO>> getAllRolesByEmail(@RequestParam(required = true) String email) {
 		return createResponse(getRolesServicesAssembler().getRolesByUserEmail(email), HttpStatus.OK);
 	}
