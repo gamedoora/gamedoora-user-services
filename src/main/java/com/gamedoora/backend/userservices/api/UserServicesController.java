@@ -90,7 +90,7 @@ public class UserServicesController extends BaseController {
   @GetMapping(
           value = "/",
           produces = {MediaType.APPLICATION_JSON_VALUE})
-  public ResponseEntity<UserDTO> getUserByEmail(@RequestParam(required = false) String email) {
+  public ResponseEntity<UserDTO> getUserByEmail(@RequestParam(required = true) String email) {
     return createResponse(getUserServicesAssembler().getUserByEmail(email), HttpStatus.OK);
   }
 

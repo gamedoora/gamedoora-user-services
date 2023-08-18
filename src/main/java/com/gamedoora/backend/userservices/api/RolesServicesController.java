@@ -68,7 +68,7 @@ public class RolesServicesController extends BaseController {
 	}
 
 	@GetMapping(value = "/", produces =  {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<RoleDTO>> getAllRolesByEmail(@RequestParam(required = false) String email) {
+	public ResponseEntity<List<RoleDTO>> getAllRolesByEmail(@RequestParam(required = true) String email) {
 		return createResponse(getRolesServicesAssembler().getRolesByUserEmail(email), HttpStatus.OK);
 	}
 

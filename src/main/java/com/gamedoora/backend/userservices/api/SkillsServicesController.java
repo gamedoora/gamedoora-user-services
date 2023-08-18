@@ -85,9 +85,9 @@ public class SkillsServicesController extends BaseController {
 	}
 
 	@GetMapping(
-			value = "/users/{email}",
+			value = "/users",
 			produces = {MediaType.APPLICATION_JSON_VALUE})
-	public ResponseEntity<List<SkillsDTO>> getAllSkillsByEmail(@RequestParam(required = false) String email) {
+	public ResponseEntity<List<SkillsDTO>> getAllSkillsByEmail(@RequestParam(required = true) String email) {
 		return createResponse(getSkillsServicesAssembler().getSkillsByEmail(email), HttpStatus.OK);
 	}
 
