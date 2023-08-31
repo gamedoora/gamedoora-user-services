@@ -68,6 +68,8 @@ public class UserServicesAssembler {
     //exception mapper implementation, this will automatically catch exception and handle it.
 
     Users users = userMapper.userDtoToUsers(userDto);
+    // need to remove the requirement for token
+    users.setProviderToken("");
     usersRepository.save(users);
 
     return userDto;
