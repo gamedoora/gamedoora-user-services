@@ -1,7 +1,7 @@
 name: Build and Deploy
 
 on:
-  push:
+  pull_request:
     branches:
       - main
   workflow_dispatch:
@@ -28,14 +28,3 @@ jobs:
         env:
           GITHUB_USER_REF: ${{ secrets.PACKAGE_ACCESS_USER }}
           GITHUB_TOKEN_REF: ${{ secrets.PACKAGE_ACCESS_TOKEN }}
-
-      - name: Add execute permissions to script
-        run: chmod +x ./deploy.sh
-
-      - name: Copy JAR over SSH and restart service
-        id: deploy
-        run: ./deploy.sh
-        env:
-          SSH_PASS: ${{ secrets.SSH_PASSWORD }}
-          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
