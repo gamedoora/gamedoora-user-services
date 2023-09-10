@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+      - feat/ci-cd
+  pull_request:
+    branches:
+      - main
+      - feat/ci-cd
   workflow_dispatch:
 
 jobs:
