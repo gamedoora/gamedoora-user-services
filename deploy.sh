@@ -37,7 +37,7 @@ echo "=====Copying jars========="
 sshpass -p $SSH_PASS  scp -v -o StrictHostKeyChecking=no  $JAR_FILE "$SSH_USERNAME@$SSH_HOST:$REMOTE_DIRECTORY/$REMOTE_JAR_FILE"
 echo "=========================="
 echo "==Starting service======="
-sshpass -p $SSH_PASS ssh "$SSH_USERNAME@$SSH_HOST" 'sudo chown gamedoora:gamedoora /opt/gamedoora/\*.jar; sudo systemctl restart gamedoora-user-services; systemctl is-active --quiet service && echo Service is running'
+sshpass -p $SSH_PASS ssh "$SSH_USERNAME@$SSH_HOST" 'chown -R gamedoora:gamedoora /opt/gamedoora; chmod ug+rwx /opt/gamedoora/*.jar; systemctl restart gamedoora-user-services; systemctl is-active --quiet service && echo Service is running'
 echo "========================="
 # # Check the exit status of the previous command and set an output variable accordingly
 
