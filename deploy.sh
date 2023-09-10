@@ -16,11 +16,11 @@ echo $SSH_HOST
     fi
   else
     mkdir -p $REMOTE_DIRECTORY
-  fi"
+  fi
 
 #COPY SYSTEMD INTO LOCAL
 DEST_PATH="/usr/lib/systemd/system/"
-#scp gamedoora-user-service.service -o StrictHostKeyChecking=no "$SSH_USERNAME:$SSH_PASSWORD@$SSH_HOST:$DEST_PATH"
+scp gamedoora-user-service.service -o StrictHostKeyChecking=no "$SSH_HOST:$DEST_PATH"
 
 # Stop the service
 #ssh -o StrictHostKeyChecking=no -p "$SSH_PASSWORD" "$SSH_USERNAME@$SSH_HOST" '
@@ -28,7 +28,7 @@ systemctl daemon-reload; sudo systemctl stop gamedoora-user-services
 
 # copy the new JAR file to the remote directory and rename it
 # scp $JAR_FILE -o StrictHostKeyChecking=no "$SSH_USERNAME:$SSH_PASSWORD@$SSH_HOST:$REMOTE_DIRECTORY/$REMOTE_JAR_FILE"
-ssh -p "$SSH_PASSWORD" $SSH_USERNAME@$SSH_HOST '
+# ssh -p "$SSH_PASSWORD" $SSH_USERNAME@$SSH_HOST '
 chown gamedoora:gamedoora /opt/gamedoora/\*.jar; sudo systemctl restart gamedoora-user-services
 
 # Check the exit status of the previous command and set an output variable accordingly
