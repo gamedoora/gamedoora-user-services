@@ -20,16 +20,21 @@ echo $SSH_HOST
 
 #COPY SYSTEMD INTO LOCAL
 DEST_PATH="/usr/lib/systemd/system/"
-echo "Copying files"
+echo "=====Copying files========="
 pwd
 ls
 sshpass -p $SSH_PASS scp -o StrictHostKeyChecking=no  ./gamedoora-user-services.service "$SSH_USERNAME@$SSH_HOST:$DEST_PATH"
-# echo "Restarting service"
-# # Stop the service
-# sshpass -p $SSH_PASS ssh -o StrictHostKeyChecking=no "$SSH_USERNAME@$SSH_HOST" 'sudo systemctl daemon-reload; sudo systemctl stop gamedoora-user-services'
+echo "==========================="
+echo "==Stopping service======="
+# Stop the service
+sshpass -p $SSH_PASS ssh -o StrictHostKeyChecking=no "$SSH_USERNAME@$SSH_HOST" 'sudo systemctl daemon-reload; sudo systemctl stop gamedoora-user-services'
+echo "========================="
 
-# # copy the new JAR file to the remote directory and rename it
-# sshpass -p $SSH_PASS  scp -o StrictHostKeyChecking=no  $JAR_FILE "$SSH_USERNAME:$SSH_HOST:$REMOTE_DIRECTORY/$REMOTE_JAR_FILE"
+echo "=====Copying jars========="
+
+ # copy the new JAR file to the remote directory and rename it
+echo "=========================="
+sshpass -p $SSH_PASS  scp -o StrictHostKeyChecking=no  $JAR_FILE "$SSH_USERNAME:$SSH_HOST:$REMOTE_DIRECTORY/$REMOTE_JAR_FILE"
 # sshpass -p $SSH_PASS ssh $SSH_USERNAME@host 'sudo chown gamedoora:gamedoora /opt/gamedoora/\*.jar; sudo systemctl restart gamedoora-user-services'
 
 # # Check the exit status of the previous command and set an output variable accordingly
