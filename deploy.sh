@@ -21,6 +21,7 @@ echo $SSH_HOST
 #COPY SYSTEMD INTO LOCAL
 DEST_PATH="/usr/lib/systemd/system/"
 echo "Copying files"
+pwd
 sshpass -p $SSH_PASS scp gamedoora-user-service.services -o StrictHostKeyChecking=no "$SSH_USERNAME@$SSH_HOST:$DEST_PATH"
 echo "Restarting service"
 # Stop the service
