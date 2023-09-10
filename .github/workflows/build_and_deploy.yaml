@@ -37,10 +37,19 @@ jobs:
       - name: Add execute permissions to script
         run: chmod +x ./deploy.sh
 
-      - name: Copy JAR over SSH and restart service
-        id: deploy
-        run: ./deploy.sh
-        env:
-          SSH_PASS: ${{ secrets.SSH_PASSWORD }}
-          SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
+      # - name: Copy JAR over SSH and restart service
+      #   id: deploy
+      #   run: ./deploy.sh
+      #   env:
+      #     SSH_PASS: ${{ secrets.SSH_PASSWORD }}
+      #     SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
+      #     SSH_HOST: ${{ secrets.SSH_HOST }}
+      - name: Run sshpass commands
+        uses: matheusvanzan/sshpass-action@v2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          port: 22
+          user: ${{ secrets.SSH_USERNAME }}
+          pass: ${{ secrets.SSH_PASSWORD }}
+          run: |
+            ./deploy.sh
