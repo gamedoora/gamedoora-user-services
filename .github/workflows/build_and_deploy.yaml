@@ -51,5 +51,4 @@ jobs:
           port: 22
           user: ${{ secrets.SSH_USERNAME }}
           pass: ${{ secrets.SSH_PASSWORD }}
-          run: |
-            ./deploy.sh
+          run: ./deploy.sh
