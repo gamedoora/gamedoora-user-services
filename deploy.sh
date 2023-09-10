@@ -33,7 +33,7 @@ sshpass -p $SSH_PASS scp -o StrictHostKeyChecking=no  ./gamedoora-user-services.
 # sshpass -p $SSH_PASS ssh $SSH_USERNAME@host 'sudo chown gamedoora:gamedoora /opt/gamedoora/\*.jar; sudo systemctl restart gamedoora-user-services'
 
 # # Check the exit status of the previous command and set an output variable accordingly
-# if [ $? -eq 0 ]; then
+if [ $? -eq 0 ]; then
   echo "::set-output name=status::success"
 else
   echo "::set-output name=status::failure"
