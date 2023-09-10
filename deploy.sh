@@ -21,7 +21,7 @@ echo $SSH_HOST
 #COPY SYSTEMD INTO LOCAL
 DEST_PATH="/usr/lib/systemd/system/"
 echo "Copying files"
-sshpass -p $SSH_PASS scp gamedoora-user-service.service -o StrictHostKeyChecking=no "$SSH_USERNAME@$SSH_HOST:$DEST_PATH"
+sshpass -p $SSH_PASS scp gamedoora-user-service.services -o StrictHostKeyChecking=no "$SSH_USERNAME@$SSH_HOST:$DEST_PATH"
 echo "Restarting service"
 # Stop the service
 sshpass -p $SSH_PASS ssh -o StrictHostKeyChecking=no "$SSH_USERNAME@$SSH_HOST" 'sudo systemctl daemon-reload; sudo systemctl stop gamedoora-user-services'
