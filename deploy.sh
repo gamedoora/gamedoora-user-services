@@ -33,10 +33,12 @@ echo "========================="
 echo "=====Copying jars========="
 
  # copy the new JAR file to the remote directory and rename it
-echo "=========================="
-sshpass -p $SSH_PASS  scp -o StrictHostKeyChecking=no  $JAR_FILE "$SSH_USERNAME:$SSH_HOST:$REMOTE_DIRECTORY/$REMOTE_JAR_FILE"
-# sshpass -p $SSH_PASS ssh $SSH_USERNAME@host 'sudo chown gamedoora:gamedoora /opt/gamedoora/\*.jar; sudo systemctl restart gamedoora-user-services'
 
+sshpass -p $SSH_PASS  scp -v -o StrictHostKeyChecking=no  $JAR_FILE "$SSH_USERNAME@$SSH_HOST:$REMOTE_DIRECTORY/$REMOTE_JAR_FILE"
+echo "=========================="
+echo "==Starting service======="
+sshpass -p $SSH_PASS ssh $SSH_USERNAME@host 'sudo chown gamedoora:gamedoora /opt/gamedoora/\*.jar; sudo systemctl restart gamedoora-user-services'
+echo "========================="
 # # Check the exit status of the previous command and set an output variable accordingly
 if [ $? -eq 0 ]; then
   echo "::set-output name=status::success"
