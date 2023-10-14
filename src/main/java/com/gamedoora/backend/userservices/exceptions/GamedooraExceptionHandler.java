@@ -29,11 +29,7 @@ public class GamedooraExceptionHandler extends ResponseEntityExceptionHandler {
   @ExceptionHandler(value = {MappingException.class})
   protected ResponseEntity<Object> handleMappingException(MappingException ex, WebRequest request) {
     GamedooraExceptionResponseEntity bodyOfResponse =
-            GamedooraExceptionResponseEntity.builder()
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR.name())
-                    .message(ex.getMessage())
-                    .details(ex.getMessage())
-                    .build();
+            getBodyOfResponse(ex, HttpStatus.INTERNAL_SERVER_ERROR);
     return handleExceptionInternal(
             ex, bodyOfResponse, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
   }
