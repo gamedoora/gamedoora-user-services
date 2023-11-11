@@ -36,21 +36,21 @@ public class UserServicesController extends BaseController {
   }
 
   @PutMapping(
-      value = "/{id}",
+      value = "/{emailId}",
       consumes = {MediaType.APPLICATION_JSON_VALUE},
       produces = {MediaType.APPLICATION_JSON_VALUE})
   public ResponseEntity<UserDTO> updateUsers(
-          @PathVariable("id") long id, @RequestBody UserDTO usersDto) {
-    UserDTO userDTO = getUserServicesAssembler().updateUsers(id, usersDto);
+          @PathVariable("emailId") String emailId, @RequestBody UserDTO usersDto) {
+    UserDTO userDTO = getUserServicesAssembler().updateUsers(emailId, usersDto);
     if (null == userDTO) {
-      throw new NotFoundException(MessageFormat.format("User by id {0} not found", id));
+      throw new NotFoundException(MessageFormat.format("User by id {0} not found", emailId));
     }
     return createResponse(userDTO, HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<HttpStatus> deleteUsers(@PathVariable("id") long id) {
-    getUserServicesAssembler().deleteUsers(id);
+  public ResponseEntity<HttpStatus> deleteUsers(@PathVariable("emailId") String emailId) {
+    getUserServicesAssembler().deleteUsers(emailId);
     return createResponse(null, HttpStatus.NO_CONTENT);
   }
 
@@ -92,6 +92,13 @@ public class UserServicesController extends BaseController {
           produces = {MediaType.APPLICATION_JSON_VALUE})
   public ResponseEntity<UserDTO> getUserByEmail(@RequestParam(required = true) String email) {
     return createResponse(getUserServicesAssembler().getUserByEmail(email), HttpStatus.OK);
+  }
+
+  @GetMapping(
+          value = "/studios/emailId",
+          produces = {MediaType.APPLICATION_JSON_VALUE})
+  public ResponseEntity<List<UserDTO>> getStudiosByEmail(@RequestParam(required = true) String emailId){
+    return createResponse(getUserServicesAssembler().getAllUsersByStudio(emailId), HttpStatus.OK);
   }
 
   public UserServicesAssembler getUserServicesAssembler() {
