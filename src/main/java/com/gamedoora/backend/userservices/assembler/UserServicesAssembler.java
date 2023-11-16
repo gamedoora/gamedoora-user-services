@@ -78,7 +78,7 @@ public class UserServicesAssembler {
   public UserDTO updateUsers(String emailId, UserDTO userDto) {
 
     Users usersRes = usersRepository.findByEmail(emailId);
-    if (usersRes.getEmail().isEmpty()) {
+    if (usersRes.getEmail() == null) {
       return null;
     }
     Users users = new Users();
