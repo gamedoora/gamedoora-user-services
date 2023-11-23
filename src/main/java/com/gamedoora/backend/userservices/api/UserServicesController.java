@@ -36,11 +36,11 @@ public class UserServicesController extends BaseController {
   }
 
   @PutMapping(
-      value = "/{emailId}",
+      value = "/emailId",
       consumes = {MediaType.APPLICATION_JSON_VALUE},
       produces = {MediaType.APPLICATION_JSON_VALUE})
   public ResponseEntity<UserDTO> updateUsers(
-          @PathVariable("emailId") String emailId, @RequestBody UserDTO usersDto) {
+          @RequestParam("emailId") String emailId, @RequestBody UserDTO usersDto) {
     UserDTO userDTO = getUserServicesAssembler().updateUsers(emailId, usersDto);
     if (null == userDTO) {
       throw new NotFoundException(MessageFormat.format("User by id {0} not found", emailId));
@@ -48,8 +48,8 @@ public class UserServicesController extends BaseController {
     return createResponse(userDTO, HttpStatus.OK);
   }
 
-  @DeleteMapping("/{id}")
-  public ResponseEntity<HttpStatus> deleteUsers(@PathVariable("emailId") String emailId) {
+  @DeleteMapping("/emailId")
+  public ResponseEntity<HttpStatus> deleteUsers(@RequestParam("emailId") String emailId) {
     getUserServicesAssembler().deleteUsers(emailId);
     return createResponse(null, HttpStatus.NO_CONTENT);
   }
