@@ -13,7 +13,7 @@ StandardOutput=file:/var/log/gamedoora/user_service_logs/user_services.log
 StandardError=file:/var/log/gamedoora/user_service_logs/user_services.log
 
 # Rotate log based on days, capacity, file size, compress, etc.
-LogsDirectory=/var/log/gamedoora/user_service_logs
+LogsDirectory=gamedoora/user_service_logs
 RuntimeMaxUse=15d
 RuntimeMaxFileSize=10M
 
