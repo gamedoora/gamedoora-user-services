@@ -14,7 +14,7 @@ StandardError=file:/var/log/gamedoora/user_service_logs/user_services.log
 
 # Rotate log based on days, capacity, file size, compress, etc.
 # LogsDirectory=/gamedoora/user_service_logs
-RuntimeMaxUse=15d
+RuntimeMaxUse=15M
 RuntimeMaxFileSize=10M
 
 # Comment RunTimeMaxFileSize and Uncomment below, if instead of file size you want to switch to log size.
